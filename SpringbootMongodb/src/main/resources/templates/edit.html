@@ -1,0 +1,31 @@
+<html>
+    <head>
+        <title>Report Modification</title>
+      
+          
+         <link rel = "stylesheet" type = "text/css"  href = "../css/main.css" />
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    
+    </head>
+    <body>
+       
+         <div>
+        <h2>Update  Report</h2>
+        <form  th:action="@{/updateReport}" method="POST">
+            Repor Name :  
+            <input type="text" class="container" id="reportName" name="reportName" th:field="${report.reportName}"/><br/>
+            Report Domain : 
+            <input type="text" class="container" id="reportDomain" name="reportDomain"  th:field="${report.reportDomain}"/><br/>
+            Report Generation Year: 
+            <input type="text" class="container"id="reportGenerationYear" name="reportGenerationYear" th:field="${report.reportGenerationYear}"/><br/>
+            Report Description :  
+            <textarea rows="5" class="container" cols="70" id="reportDesciption" name="reportDesciption" th:field="${report.reportDesciption}"></textarea><br/>
+            <br/>
+             <input type="hidden" name="id" th:value="${report.id}" />
+            <button type="submit" value="submit" class="btn btn-primary" >Update</button>
+        </form>
+        </div>
+        
+        
+    </body>	
+</html>

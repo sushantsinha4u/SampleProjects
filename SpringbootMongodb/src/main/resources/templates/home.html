@@ -1,0 +1,98 @@
+<html>
+    <head>
+        <title>Report Details</title>
+       
+       
+         <link rel = "stylesheet" type = "text/css"  href = "../css/main.css" />
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        
+       
+    </head>
+    <body>
+    
+   Welcome
+    <div class="container" th:text="${username}"></div>
+  Role :
+     <div class="container" th:text="${roles}"></div>
+    
+    <form th:action="@{/logout}" method="post">
+            <input class="btn btn-primary"  type="submit" value="Sign Out"/>
+        </form>	
+      
+        
+       <h2>Search for reports</h2>
+        <form action="/search" method="POST" id="frmsearch">
+            <input class="container" type="text" name="search" id="search"/>
+                      <br/>
+           <button type="submit" class="btn btn-primary" value="search" id="btnsearch">Search</button>
+        </form>
+         <br/>
+        <table class="table table-hover" >
+            <thead>
+                <tr>
+                    <th>Report Name</th>
+                    <th>Report Domain</th>
+                    <th>Report Description</th>
+                    <th>Report Generation Year</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="report:${reportList}">
+                    <td th:text="${report.reportName}"></td>
+                    <td th:text="${report.reportDomain}"></td>
+                    <td th:text="${report.reportDesciption}"></td>
+                    <td th:text="${report.reportGenerationYear}"></td>
+                    <td>
+                 <form action="/deleteReport" method="POST">
+                    <input type="hidden" name="id" th:value="${report.id}" />
+                    <h2><input type="submit" class="btn btn-danger" value="Delete" onclick="return confirm('Are you sure wante to delete the record ?');"/>
+                    </h2>
+                   </form>
+                   
+                   <form action="/editReport" method="POST">
+                    <input type="hidden" name="id" th:value="${report.id}" />
+                    <h2><input  type="submit" class="btn btn-primary" value="Edit"/>
+                    </h2>
+                   </form>
+              </td>    
+                </tr>
+            </tbody>
+        </table>
+
+
+        <hr/>
+        <ul class="pagination" >
+        
+        <div th:if="${noOfLinks} > 0">
+        <li  class="disabled" th:each="i:${#numbers.sequence(0,noOfLinks-1)}">
+         <a th:href="@{/(page=${i})}"  th:text="${i}"></a>
+        </li>
+        </div>
+        
+        <div th:if="${noOfLinks} < 0">
+        <li class="disabled" th:each="i:${#numbers.sequence(0,noOfLinks)}">
+        <a th:href="@{/(page=${i})}"  th:text="${i}"></a>
+        </li>
+        </div>	
+        
+        
+        </ul>
+        
+        
+        
+        
+        
+        <br/>
+        <h2>Add Report</h2>
+        <form action="/addReport" method="POST">
+            Report Name   :          <input class="container" type="text" id="reportName" name="reportName" /><br/>
+            Report Domain :          <input class="container" type="text" id="reportDomain" name="reportDomain" /><br/>
+            Report Generation Year : <input class="container" type="text" id="reportGenerationYear" name="reportGenerationYear" /><br/>
+            Report Description :     <textarea class="container" rows="5" cols="70" id="reportDesciption" name="reportDesciption"></textarea><br/>
+                       <br/>
+            <button type="submit" value="submit" class="btn btn-primary">Submit</button>
+        </form>
+ 
+    </body>	
+</html>
