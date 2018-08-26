@@ -1,0 +1,69 @@
+
+
+
+<h4>Hello ! I am  {{name}}</h4>
+
+ <li>My age is {{age}} years </li>
+<li>My address is 
+ {{address.streetno}}  
+ {{address.streetname}} 
+  {{address.pincode}} 
+   {{address.city}} 
+    {{address.country}} 
+</li>
+
+<div *ngIf=isEdit>
+<form>
+<div>
+<label  for='name' >Name</label>
+<input  type="text"  [(ngModel)]="name"  name="name">
+</div>
+
+ <div>	
+<label  for='age' >Age</label>
+<input  type="text"  [(ngModel)]="age"  name="age">
+</div>
+
+
+<div>
+<label  for='streetno' >Street No</label>
+<input  type="text"  [(ngModel)]="address.streetno"  name="streetno">
+</div>
+</form>
+
+</div>
+
+
+<h5>My hobbies are</h5> 
+
+<form (submit)="addHobby(hobby.value)"> 
+<div>
+<label  for='hobby' >Hobby</label>
+<input  type="text" #hobby>
+</div>
+
+
+</form>
+
+<ul>
+   <li *ngFor="let hobby of hobbies">{{hobby}}  
+   <button  (click)="deleteHobby(hobby)">X</button>
+     </li>
+</ul>
+
+
+<button (click)="onClick()">Click me</button>
+
+<button (click)="toggleEdit()">Toggle Edit </button>
+
+
+<div *ngFor="let post of posts">
+   <h4>{{post.id}}</h4>
+   <h4>{{post.title}}</h4>
+   <h4>{{post.body}}</h4>
+   <h4>{{post.userId}}</h4>
+     
+</div>
+
+
+
