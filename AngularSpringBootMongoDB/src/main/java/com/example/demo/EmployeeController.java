@@ -57,12 +57,29 @@ public class EmployeeController {
 		Employee _employee = employeeRepository.save(employee);
 		return new ResponseEntity<>(_employee, HttpStatus.OK);
 	}
+	
+	
+	@PutMapping("/employees/updateRecord/{id}")
+	public ResponseEntity<Employee> updateRecordEmployee(@PathVariable("id") String id, @RequestBody Employee employee) {
+		System.out.println("Update Employee with ID = " + id + "...");
  
-	@PutMapping("/employees/{id}")
+		Employee employeeData = findOneId(id);
+		if (employeeData == null) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		employeeData.setName(employee.getName());
+		employeeData.setAge(employee.getAge());
+		employeeData.setActive(employee.isActive());
+		Employee updatedemployee = employeeRepository.save(employeeData);
+		return new ResponseEntity<>(updatedemployee, HttpStatus.OK);
+	}
+	
+ 
+	@PutMapping("/employees/update/{id}")
 	public ResponseEntity<Employee> updateEmployee(@PathVariable("id") String id, @RequestBody Employee employee) {
 		System.out.println("Update Employee with ID = " + id + "...");
  
-		Employee employeeData = findOne(id);
+		Employee employeeData = findOneId(id);
 		if (employeeData == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
@@ -73,15 +90,24 @@ public class EmployeeController {
 		return new ResponseEntity<>(updatedemployee, HttpStatus.OK);
 	}
  
+	@GetMapping("/employees/get/{id}")
+	 public  ResponseEntity<Employee> findOne(@PathVariable("id")String id) {
+	    	System.out.println(" in findone idvalue ----"+id);
+			Employee editemployee = mongoTemplate.findById(id, Employee.class);
+				return new ResponseEntity<>(editemployee, HttpStatus.OK);	
+	         }
 	
-	 public Employee findOne(String id) {
-	    	System.out.println("id----"+id);
+	
+	 public Employee findOneId(String id) {
+	    	System.out.println(" in findoneId method----"+id);
 			return  mongoTemplate.findOne
 					(Query.query(
 							new Criteria().orOperator
 							(Criteria.where("id").is(id))),Employee.class);
 	         }
-	@DeleteMapping("/employees/{id}")
+	
+	
+	@DeleteMapping("/employees/delete/{id}")
 	public ResponseEntity<String> deleteEmployee(@PathVariable("id") String id) {
 		System.out.println("Delete Employee with ID = " + id + "...");
  
