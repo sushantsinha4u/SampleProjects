@@ -1,7 +1,29 @@
-<h1>Employees</h1>
-<div *ngFor="let employee of employees | async" style="width: 300px;">
-<employee-details [employee]='employee'></employee-details>
-</div>
-<div>
-<button type="button" class="button btn-danger" (click)='deleteEmployees()'>Delete All</button>
+<div class="col-md-6">
+  <h2> User Details</h2>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th class="hidden">Id</th>
+      <th>Name</th>
+      <th>Age</th>
+      <th>Active</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let employee of employees | async" style="width: 300px;">  
+      <td> {{employee.name}}</td>
+      <td> {{employee.age}}</td>
+      <td> 
+      <span class="button btn-danger" *ngIf='employee.active' (click)='updateActive(employee,false)'>Inactive</span>
+	  <span class="button btn-success" *ngIf='!employee.active' (click)='updateActive(employee,true)'>Active</span>  
+      </td>
+      <td>
+      <span class="button btn-danger" (click)='deleteEmployee(employee)'>Delete</span>     
+      <span class="button btn-primary" (click)='editEmployee(employee)'>Edit</span>           	
+     </td>
+    </tr>
+    </tbody>
+  </table>
+   <a routerLink="deleteAll" (click)='deleteEmployees()' class="btn btn-danger" role="button">Delete Employees</a>
 </div>
