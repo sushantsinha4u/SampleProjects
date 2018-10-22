@@ -1,8 +1,10 @@
 package com.example.demo;
 
+import org.hibernate.envers.Audited;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "reports")
+@Audited
 public class Report {
 
   private String id;
