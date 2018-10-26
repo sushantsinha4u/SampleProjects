@@ -11,13 +11,15 @@ import { CreateEmployeeComponent } from './employees/create-employee/create-empl
 
 import { EmployeeService } from './employees/employee.service';
 import { EditEmployeeComponent } from './employees/edit-employee/edit-employee.component';
+import { SharedComponent } from './shared/shared/shared.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     EmployeesListComponent, 
     CreateEmployeeComponent,
-    EditEmployeeComponent
+    EditEmployeeComponent,
+    SharedComponent
   ],
   imports: [
     BrowserModule,

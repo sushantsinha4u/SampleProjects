@@ -1,11 +1,11 @@
-import { Component, OnInit,Input } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import {Router} from "@angular/router";
 import { EmployeeService } from '../employee.service';
 import { Employee } from '../employee';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'employee-list',
+  selector: 'app-employee-list',
   templateUrl: './employees-list.component.html',
   styleUrls: ['./employees-list.component.css']
 })

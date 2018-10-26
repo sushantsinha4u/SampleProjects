@@ -1,12 +1,13 @@
 package com.example.demo;
 
+import org.hibernate.envers.Audited;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "employee")
+@Audited
 public class Employee {
  
 	private String id;
- 
 	private String name;
 	private int age;
 	private boolean active;

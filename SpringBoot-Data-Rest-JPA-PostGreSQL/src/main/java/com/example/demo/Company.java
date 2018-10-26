@@ -17,7 +17,7 @@ import org.json.JSONObject;
  
 @Entity
 @Table(name="company")
-public class Company {
+public class Company extends AditableEntity<Long>{
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
