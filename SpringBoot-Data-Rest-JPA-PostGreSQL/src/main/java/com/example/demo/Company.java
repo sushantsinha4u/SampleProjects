@@ -10,14 +10,16 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
- 
+
+import org.hibernate.envers.Audited;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
  
 @Entity
+@Audited
 @Table(name="company")
-public class Company extends AditableEntity<Long>{
+public class Company{
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;

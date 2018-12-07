@@ -9,11 +9,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.envers.Audited;
 import org.json.JSONException;
 import org.json.JSONObject;
  
 
 @Entity
+@Audited
 @Table(name="product")
 public class Product {
 	
